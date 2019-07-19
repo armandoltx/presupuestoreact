@@ -23,12 +23,15 @@ function Pregunta() {
       guardarError(true);
       return;
     }
-    
+    guardarError(false);
   }
 
   return(
     <Fragment>
       <h2>Añade tu Presupuesto</h2>
+
+      {error ? <p className="alert alert-danger error">El Presupuesto es Incorrecto</p>: null}
+
       <form onSubmit={agregarPresupuesto}>
         <input type="number"
                className="u-full-width"
