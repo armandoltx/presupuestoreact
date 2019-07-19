@@ -1,0 +1,45 @@
+import React, { Fragment, useState } from 'react';
+
+
+function Pregunta() {
+
+  // definir el state
+  const [cantidad, guardarCantidad] = useState(0)
+  const [error, guardarError] = useState(false)
+
+
+  // actualizar el state con los nuevos datos del formulario
+  const actualizarState = (e) => {
+    guardarCantidad( parseInt(e.target.value) )
+  }
+
+  // validar el presupuesto y pasarlo al componente
+  const agregarPresupuesto = (e) => {
+    e.preventDefault();
+    console.log("typeof ", typeof cantidad);
+    console.log("Cantidad ", cantidad);
+    // validar
+    if (cantidad < 1 || isNaN(cantidad)) {
+      guardarError(true);
+      return;
+    }
+    
+  }
+
+  return(
+    <Fragment>
+      <h2>Añade tu Presupuesto</h2>
+      <form onSubmit={agregarPresupuesto}>
+        <input type="number"
+               className="u-full-width"
+               placeholder="Agrega tu Presupuesto"
+               onChange={actualizarState}
+        />
+        <input type="submit" className="button-primary u-full-width" value="Definir Presupuesto"/>
+      </form>
+    </Fragment>
+  )
+}
+
+
+export default Pregunta;
