@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from 'react';
 
 
-function Pregunta() {
+function Pregunta(props) {
+
+  const { guardarPresupuesto } = props; // pq vamos a pasar mas parametros a la funcion
 
   // definir el state
-  const [cantidad, guardarCantidad] = useState(0)
-  const [error, guardarError] = useState(false)
+  const [cantidad, guardarCantidad] = useState(0);
+  const [error, guardarError] = useState(false);
 
 
   // actualizar el state con los nuevos datos del formulario
@@ -23,7 +25,10 @@ function Pregunta() {
       guardarError(true);
       return;
     }
+
+    //si pasa la validacion | pasamos el presupuesto al componente app con guardarPresupuesto. Todo esto pasa al darle al boton pq pertence al onSubmit event
     guardarError(false);
+    guardarPresupuesto (cantidad);
   }
 
   return(
@@ -43,6 +48,5 @@ function Pregunta() {
     </Fragment>
   )
 }
-
 
 export default Pregunta;
