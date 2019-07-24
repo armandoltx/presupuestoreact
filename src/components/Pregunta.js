@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 
 function Pregunta(props) {
 
-  const { guardarPresupuesto } = props; // pq vamos a pasar mas parametros a la funcion
+  const { guardarPresupuesto, guardarPreguntaPresupuesto } = props; // pq vamos a pasar mas parametros a la funcion
 
   // definir el state
   const [cantidad, guardarCantidad] = useState(0);
@@ -26,9 +26,10 @@ function Pregunta(props) {
       return;
     }
 
-    //si pasa la validacion | pasamos el presupuesto al componente app con guardarPresupuesto. Todo esto pasa al darle al boton pq pertence al onSubmit event
+    //si pasa la validacion | pasamos el presupuesto al componente app con guardarPresupuesto. Todo esto pasa al darle al boton pq pertence al onSubmit event. Tb cambiamos guardarPreguntaPresupuesto como false para trabajar con el ternario
     guardarError(false);
     guardarPresupuesto (cantidad);
+    guardarPreguntaPresupuesto(false);
   }
 
   return(
