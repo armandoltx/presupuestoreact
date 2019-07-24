@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Pregunta from './components/Pregunta';
+import Formulario from './components/Formulario';
 
 function App() {
 
@@ -14,14 +15,14 @@ function App() {
       <header>
         <h1>Gasto Semanal</h1>
         <div className="contenido contenido-principal">
-          {/* {console.log("here", preguntaPresupuesto)} */}
+          {/* {rconsole.log("here", preguntaPresupuesto)} */}
           { (preguntaPresupuesto)
             ?
             <Pregunta guardarPresupuesto={guardarPresupuesto} guardarPreguntaPresupuesto={guardarPreguntaPresupuesto} />
             :
               <div className="row">
                 <div className="one-half column">
-                  Hello
+                  <Formulario />
                 </div>
                 <div className="one-half column">
                   hello
