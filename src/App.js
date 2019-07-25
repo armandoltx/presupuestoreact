@@ -6,9 +6,14 @@ function App() {
 
   //state donde guardamos el presupuesto pasado de pregunta
   const [presupuesto, guardarPresupuesto] = useState(0);
+
   // Al añadir el presupueto al componente pregunta, y darle a guardar, se pasa al componenete app y asi lo podemos usar en mas partes de la app
-  
   const [preguntaPresupuesto, guardarPreguntaPresupuesto] = useState(true);
+
+  // Para anadir el gasto, tenemos q crear un objeto con el gasto y el nombre y luego todos los gastos individuales los almacenamos en un array q se llamara gastos:
+  //luego lo pasamos al formulario y lo usamos alli por medio de los props
+  const [gasto, guardarGasto] = useState({});
+  const [gastos, guardarGastos] = useState([]);
 
   return (
     <div className="App">
@@ -22,7 +27,7 @@ function App() {
             :
               <div className="row">
                 <div className="one-half column">
-                  <Formulario />
+                  <Formulario guardarGasto={guardarGasto}/>
                 </div>
                 <div className="one-half column">
                   hello
