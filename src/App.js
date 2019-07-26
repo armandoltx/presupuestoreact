@@ -15,12 +15,20 @@ function App() {
   //luego lo pasamos al formulario y lo usamos alli por medio de los props
   const [gasto, guardarGasto] = useState({});
   const [gastos, guardarGastos] = useState([]);
+  const [crearGasto, guardarCrearGasto] = useState(false);
 
 
   useEffect(() => {
-    const listadoGastos = [...gastos, gasto];
+    if (crearGasto) {
+      const listadoGastos = [...gastos, gasto];
     guardarGastos(listadoGastos);
-  }, []);
+    }
+    // una vez agregado lo ponemos como false otra vez
+    guardarCrearGasto(false);
+  }, [crearGasto]); // crearGasto pasa a ser una dependencia, sino no se ejecutaria,
+  // La dependencia es que tiene que cambiar en el state para que se ejecute el useEffect
+
+  // la 1 vez q carga la app genera un gasto pq useEffect funciona como un componentDidMount hay que prevenir esa accion ocurra hay q poner una validacion para q se ejecute cuando queramos para ello creamos otro state ==> crearGarto y guardarCrearGasto le damos valor false de inicio y lo pasamos al formulario, cuando pasamos el gasto al componente principal le cambiamos el valor y lo pasamos a true y usando un if listo. 
 
   return (
     <div className="App">
@@ -34,7 +42,10 @@ function App() {
             :
               <div className="row">
                 <div className="one-half column">
-                  <Formulario guardarGasto={guardarGasto}/>
+                  <Formulario
+                    guardarGasto={guardarGasto}
+                  guardarCrearGasto={guardarCrearGasto}
+                  />
                 </div>
                 <div className="one-half column">
                   <Listado gastos={gastos} />

@@ -4,7 +4,7 @@ import shortid from 'shortid';
 
 function  Formulario(props) {
 
-  const { guardarGasto } = props; // Por destructuring, anadimos aqui todo lo q necesitemos traer desde donde el componente formulario es llamado, por ejemplo en app con guardarGasto.
+  const { guardarGasto, guardarCrearGasto } = props; // Por destructuring, anadimos aqui todo lo q necesitemos traer desde donde el componente formulario es llamado, por ejemplo en app con guardarGasto.
   // asi podemos pasar el gasto desde el formulario al componente ppal.
 
   // state van a ser 3: nombre y cantidad del gasto y un error
@@ -32,6 +32,7 @@ function  Formulario(props) {
 
       // pasar el gasto al componente principal
       guardarGasto(gasto);
+      guardarCrearGasto(true); // para q useEffect funcione
 
       // eliminar la alerta
       guardarError(false);
