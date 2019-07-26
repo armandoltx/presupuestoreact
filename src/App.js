@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pregunta from './components/Pregunta';
 import Formulario from './components/Formulario';
+import Listado from './components/Listado';
 
 function App() {
 
@@ -14,6 +15,12 @@ function App() {
   //luego lo pasamos al formulario y lo usamos alli por medio de los props
   const [gasto, guardarGasto] = useState({});
   const [gastos, guardarGastos] = useState([]);
+
+
+  useEffect(() => {
+    const listadoGastos = [...gastos, gasto];
+    guardarGastos(listadoGastos);
+  }, []);
 
   return (
     <div className="App">
@@ -30,7 +37,7 @@ function App() {
                   <Formulario guardarGasto={guardarGasto}/>
                 </div>
                 <div className="one-half column">
-                  hello
+                  <Listado gastos={gastos} />
                 </div>
               </div>
           }
