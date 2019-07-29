@@ -26,11 +26,18 @@ function App() {
   useEffect(() => {
     if (crearGasto) {
       const listadoGastos = [...gastos, gasto];
-    guardarGastos(listadoGastos);
+      guardarGastos(listadoGastos);
+
+      // restar el presupuesto
+      console.log("antes");
+      const presupuestoRestante = restante - gasto.cantidadGasto;
+      console.log("despues");
+      guardarRestante(presupuestoRestante);
+
+      // una vez agregado lo ponemos como false otra vez
+      guardarCrearGasto(false);
     }
-    // una vez agregado lo ponemos como false otra vez
-    guardarCrearGasto(false);
-  }, [crearGasto]); // crearGasto pasa a ser una dependencia, sino no se ejecutaria,
+  }, [crearGasto, gastos, gasto, restante]); // crearGasto pasa a ser una dependencia, sino no se ejecutaria,
   // La dependencia es que tiene que cambiar en el state para que se ejecute el useEffect
 
   // la 1 vez q carga la app genera un gasto pq useEffect funciona como un componentDidMount hay que prevenir esa accion ocurra hay q poner una validacion para q se ejecute cuando queramos para ello creamos otro state ==> crearGarto y guardarCrearGasto le damos valor false de inicio y lo pasamos al formulario, cuando pasamos el gasto al componente principal le cambiamos el valor y lo pasamos a true y usando un if listo. 
