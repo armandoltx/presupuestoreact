@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Pregunta from './components/Pregunta';
 import Formulario from './components/Formulario';
 import Listado from './components/Listado';
+import ControlPresupuesto from './components/ControlPresupuesto';
 
 function App() {
 
@@ -16,6 +17,10 @@ function App() {
   const [gasto, guardarGasto] = useState({});
   const [gastos, guardarGastos] = useState([]);
   const [crearGasto, guardarCrearGasto] = useState(false);
+
+  // para mostrar el presupuesto y el la diferencia entre lo q gastamos y el presupuesto, creamos otro state:
+  const [restante, guardarRestante] = useState(0);
+  // lo pasamos a la pregunta
 
 
   useEffect(() => {
@@ -38,7 +43,11 @@ function App() {
           {/* {rconsole.log("here", preguntaPresupuesto)} */}
           { (preguntaPresupuesto)
             ?
-            <Pregunta guardarPresupuesto={guardarPresupuesto} guardarPreguntaPresupuesto={guardarPreguntaPresupuesto} />
+            <Pregunta
+              guardarPresupuesto={guardarPresupuesto}
+              guardarPreguntaPresupuesto={guardarPreguntaPresupuesto}
+              guardarRestante={guardarRestante}
+            />
             :
               <div className="row">
                 <div className="one-half column">
@@ -49,6 +58,7 @@ function App() {
                 </div>
                 <div className="one-half column">
                   <Listado gastos={gastos} />
+                  <ControlPresupuesto presupuesto={presupuesto} restante={restante} />
                 </div>
               </div>
           }
